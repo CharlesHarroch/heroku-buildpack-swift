@@ -38,7 +38,7 @@ SWIFT_PREFIX="$(swiftenv prefix || true)"
 if ! [ -d "$SWIFT_PREFIX" ]; then
   VERSION="$(env DONT_CHECK=true swiftenv version-name)"
   echo "-----> Installing $VERSION"
-  swiftenv install --no-build $DEFAULT_SWIFT_VERSION
+  swiftenv install --no-build 3.0-preview-1
 else
   swiftenv rehash
 fi
