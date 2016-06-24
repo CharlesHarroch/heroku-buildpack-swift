@@ -4,8 +4,6 @@
 set -e
 set -o pipefail
 
-swift version
-
 BIN_DIR=$(cd $(dirname $0); pwd)
 ROOT_DIR=$(dirname $BIN_DIR)
 
@@ -40,7 +38,9 @@ SWIFT_PREFIX="$(swiftenv prefix || true)"
 if ! [ -d "$SWIFT_PREFIX" ]; then
   VERSION="$(env DONT_CHECK=true swiftenv version-name)"
   echo "-----> Installing $VERSION"
-  swiftenv install $DEFAULT_SWIFT_VERSION
+  swiftenv local 3.0
+  swift global 3.0
+  #swiftenv install $DEFAULT_SWIFT_VERSION
 else
   swiftenv rehash
 fi
