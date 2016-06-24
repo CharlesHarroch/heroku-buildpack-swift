@@ -29,6 +29,7 @@ export PATH="$ROOT_DIR/swiftenv/bin:$PATH"
 eval "$(swiftenv init -)"
 
 if ! [ -f "$BUILD_DIR/.swift-version" ] && [ -z "$SWIFT_VERSION" ]; then
+  echo "-----> No .swift-version found. Default version selected = $DEFAULT_SWIFT_VERSION"
   export SWIFT_VERSION="$DEFAULT_SWIFT_VERSION"
 fi
 
@@ -37,6 +38,7 @@ cd "$BUILD_DIR"
 SWIFT_PREFIX="$(swiftenv prefix || true)"
 if ! [ -d "$SWIFT_PREFIX" ]; then
   VERSION="$(env DONT_CHECK=true swiftenv version-name)"
+  VERSION= $DEFAULT_SWIFT_VERSION
   echo "-----> Installing $VERSION"
   swiftenv install
 else
