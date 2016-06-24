@@ -38,9 +38,8 @@ cd "$BUILD_DIR"
 SWIFT_PREFIX="$(swiftenv prefix || true)"
 if ! [ -d "$SWIFT_PREFIX" ]; then
   VERSION="$(env DONT_CHECK=true swiftenv version-name)"
-  VERSION= "$DEFAULT_SWIFT_VERSION"
   echo "-----> Installing $VERSION"
-  swiftenv install
+  swiftenv install $DEFAULT_SWIFT_VERSION
 else
   swiftenv rehash
 fi
