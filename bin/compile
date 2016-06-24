@@ -10,7 +10,7 @@ ROOT_DIR=$(dirname $BIN_DIR)
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-DEFAULT_SWIFT_VERSION="3.0-dev"
+DEFAULT_SWIFT_VERSION="3.0-preview-1"
 CLANG_VERSION=3.7.0
 
 if [ -z "$SWIFT_BUILD_CONFIGURATION" ]; then
@@ -38,11 +38,7 @@ SWIFT_PREFIX="$(swiftenv prefix || true)"
 if ! [ -d "$SWIFT_PREFIX" ]; then
   VERSION="$(env DONT_CHECK=true swiftenv version-name)"
   echo "-----> Installing $VERSION"
-  rm ~/.swiftenv/tmp/swiftenv-build-3.0-dev
-  swiftenv install 3.0-dev --no-clean
-  swiftenv local 3.0-dev
-  swift global 3.0-dev
-  #swiftenv install $DEFAULT_SWIFT_VERSION
+  swiftenv install --no-build $DEFAULT_SWIFT_VERSION
 else
   swiftenv rehash
 fi
